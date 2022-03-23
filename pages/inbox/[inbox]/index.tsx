@@ -10,7 +10,7 @@ import {
 import { useRouter } from "next/router";
 import superagent from "superagent";
 
-export default function Inbox(props: {
+export default function Index(props: {
   error: null | string;
   messages: any[];
 }): ReactElement {
@@ -55,7 +55,6 @@ export async function getServerSideProps(context) {
   } catch (err) {
     error = err.toString();
   }
-  console.log(messages);
   return {
     props: {
       messages,
