@@ -4,8 +4,3 @@
 // generate all react-md styles with the custom theme
 @import 'react-md/dist/styles';
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    @include rmd-theme-dark;
-  }
-}

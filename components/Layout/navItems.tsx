@@ -1,10 +1,9 @@
-import React, { ReactNode } from 'react'
+import React, { ReactNode } from "react";
 import {
   LayoutNavigationTree,
   LayoutNavigationItem,
-  HomeSVGIcon,
-  TvSVGIcon,
-} from 'react-md'
+  InputSVGIcon, InboxSVGIcon
+} from "react-md";
 
 /**
  * Note: The `parentId` **must** be defaulted to `null` for the navigation tree
@@ -24,11 +23,12 @@ function createRoute(
     href: pathname,
     children,
     leftAddon,
-  }
+  };
 }
 
 const navItems: LayoutNavigationTree = {
-  '/': createRoute('/', 'Home', <HomeSVGIcon />),
-}
+  "/": createRoute("/", "Enter Email Address", <InputSVGIcon />),
+  "/addresses": createRoute("/addresses", "Addresses", <InboxSVGIcon />),
+};
 
-export default navItems
+export default navItems;

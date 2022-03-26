@@ -5,10 +5,10 @@ import {
   CardHeader,
   CardTitle,
   CardContent,
-  CardSubtitle,
   TextContainer,
   Text,
 } from "react-md";
+import { Link as ReactMDLink } from "@react-md/link";
 import { useRouter } from "next/router";
 import Link from "next/link";
 
@@ -21,11 +21,14 @@ export default function Route1(props: {
   return (
     <TextContainer>
       <Text type="headline-4">
-        <Link href={`/inbox/${inbox}`}>{inbox}</Link>
+        <ReactMDLink
+          theme={"primary"}
+          component={Link}
+          href={`/inbox/${inbox}`}
+        >
+          {inbox}
+        </ReactMDLink>
       </Text>
-      <p>
-        Message id <code>{messageId}</code>
-      </p>
       {props.error ? (
         <Card>
           <CardHeader>
@@ -36,8 +39,18 @@ export default function Route1(props: {
           </CardContent>
         </Card>
       ) : (
-        <iframe srcDoc={props.messageHtml} style={{ backgroundColor: '#f0f0f0', width: '100%', minHeight: '400px' }}/>
+        <iframe
+          srcDoc={props.messageHtml}
+          style={{
+            backgroundColor: "#f0f0f0",
+            width: "100%",
+            minHeight: "600px",
+          }}
+        />
       )}
+      <p>
+        id <code>{messageId}</code>
+      </p>
     </TextContainer>
   );
 }

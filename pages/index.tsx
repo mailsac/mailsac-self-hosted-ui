@@ -9,8 +9,9 @@ import {
 } from "react-md";
 import { useRouter } from "next/router";
 
-export default function ViewMessage(): ReactElement {
-  const [inbox, setInbox] = useState("");
+const defaultEmail = process.env.NEXT_PUBLIC_MAILSAC_CUSTOM_DOMAIN ? `@${process.env.NEXT_PUBLIC_MAILSAC_CUSTOM_DOMAIN}` : "";
+export default function SelectAddress(): ReactElement {
+  const [inbox, setInbox] = useState(defaultEmail);
   const router = useRouter();
   const onSubmit = (e) => {
     e.preventDefault();
@@ -19,21 +20,19 @@ export default function ViewMessage(): ReactElement {
   };
   return (
     <TextContainer>
-      <Text type="headline-4">Temporary Email System</Text>
+      <Text type="headline-4">Enter Email Address</Text>
       <Form onSubmit={onSubmit}>
-        <Fieldset legend="Enter email address">
-          <TextField
-            id="email-inbox"
-            type="email"
-            autoFocus={true}
-            value={inbox}
-            onChange={(e) => setInbox(e.target.value)}
-          />
-          <br />
-          <Button theme="primary" themeType="contained" onClick={onSubmit}>
-            View mail
-          </Button>
-        </Fieldset>
+        <TextField
+          id="email-inbox"
+          type="email"
+          autoFocus={true}
+          value={inbox}
+          onChange={(e) => setInbox(e.target.value)}
+        />
+        <br />
+        <Button theme="primary" themeType="contained" onClick={onSubmit}>
+          View mail
+        </Button>
       </Form>
     </TextContainer>
   );

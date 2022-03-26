@@ -49,7 +49,7 @@ export default function Layout({ children }: LayoutProps): ReactElement {
   return (
     <Configuration icons={icons}>
       <RMDLayout
-        title="Temporary Email"
+        title={process.env.NEXT_PUBLIC_WEBSITE_NAME}
         navHeaderTitle="Navigation"
         tabletLayout="temporary"
         landscapeTabletLayout="temporary"

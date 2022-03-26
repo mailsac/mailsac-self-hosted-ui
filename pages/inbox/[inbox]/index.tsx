@@ -10,7 +10,35 @@ import {
 import { useRouter } from "next/router";
 import superagent from "superagent";
 
-export default function Index(props: {
+const MessageRow = (props: { m: any; inbox: string }) => {
+  const { m, inbox } = props;
+  const router = useRouter();
+  const displayDate = new Date(m.received).toLocaleTimeString();
+  return (
+    <TableRow
+      style={{ cursor: "pointer" }}
+      onClick={() => router.push(`/inbox/${inbox}/message/${m._id}`)}
+    >
+      <TableCell>{m.from?.[0]?.address}</TableCell>
+      <TableCell>{m.subject}</TableCell>
+      <TableCell hAlign="right">{displayDate}</TableCell>
+    </TableRow>
+  );
+};
+
+const MessageTable = (props: { messages: any[]; inbox: string }) => {
+  return (
+    <Table fullWidth={true}>
+      <TableBody>
+        {props.messages.map((m) => (
+          <MessageRow key={m.id} m={m} inbox={props.inbox} />
+        ))}
+      </TableBody>
+    </Table>
+  );
+};
+
+export default function InboxIndex(props: {
   error: null | string;
   messages: any[];
 }): ReactElement {
@@ -19,28 +47,16 @@ export default function Index(props: {
   const { error, messages } = props;
 
   return (
-    <TextContainer>
-      <Text type="headline-4">{inbox}</Text>
-      {error && <pre>{error}</pre>}
-      {!messages?.length && <Text type="headline-6">No messages</Text>}
+    <>
+      <TextContainer>
+        <Text type="headline-4">{inbox}</Text>
+        {error && <pre>{error}</pre>}
+        {!messages?.length && <Text type="headline-6">No messages</Text>}
+      </TextContainer>
       {messages?.length ? (
-        <Table>
-          <TableBody>
-            {messages.map((m) => (
-              <TableRow
-                style={{ cursor: "pointer" }}
-                onClick={() => router.push(`/inbox/${inbox}/message/${m._id}`)}
-                key={m._id}
-              >
-                <TableCell>{m.from?.[0]?.address}</TableCell>
-                <TableCell>{m.subject}</TableCell>
-                <TableCell>{m.received}</TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
+        <MessageTable messages={messages} inbox={inbox as string} />
       ) : null}
-    </TextContainer>
+    </>
   );
 }
 
