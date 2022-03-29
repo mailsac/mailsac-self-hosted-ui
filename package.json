@@ -1,0 +1,24 @@
+{
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@react-md/icon": "^5.1.0",
+    "next": "latest",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-md": "^2.1.1",
+    "superagent": "^7.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "^14.0.27",
+    "@types/react": "^16.9.43",
+    "@types/superagent": "^4.1.15",
+    "prettier": "^2.5.1",
+    "sass": "^1.32.4",
+    "typescript": "^4.3.2"
+  }
+}
