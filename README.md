@@ -1,17 +1,22 @@
 # Mailsac Self-Hosted Temporary Email User Interface
 
-This project is a user interface for disposable email. It uses mailsac.com as the backend mail service.
+This project is a user interface for viewing disposable email. It uses mailsac.com as the backend mail service.
 
 ![Checking mail](images/example_animation.gif)
 
-## Use Cases
+## Mailsac.com Limitations
 
 [Mailsac](https://mailsac.com) already offers disposable email without a need to sign up for an account. What need does
 this application meet that Mailsac doesn't already provide?
 
 Mailsac has limitations on what can be viewed without signing up for an account. Only the latest email in a public
-mailbox can be viewed withing an account. Mail in a private domain cannot be viewed without signing in with an account
+mailbox can be viewed without signing in. Mail in a private domain cannot be viewed without signing in with an account
 that has permissions to the private domain.
+
+## Use Cases
+
+There are two use cases that customer's have brought to our attention that Mailsac's service doesn't satisfy. Both
+stem from a requirement to allow users read-only access to an inbox without the requirement of creating a Mailsac account.
 
 ### Class Room Use Case
 
@@ -33,7 +38,6 @@ the application behind basic authentication.
 ### Local
 
 With [NodeJS](https://nodejs.org/en/) installed this application can be run with the following commands.
-
 
 ```bash
 npm install && npm run build
@@ -82,7 +86,8 @@ The Vercel [Getting Started](https://vercel.com/docs/get-started) guide is easy 
 After a successful deployment you can click on the image of the application  to be taken to the live application.
 
 **NOTE** There is currently no authentication on this application. Anyone with the URL will be able to view emails
-and domains associated with the Mailsac API key that was used.
+and domains associated with the Mailsac API key that was used. Operations will be tracked in the Mailsac account in
+which the API key is associated with.
 
 You are free to deploy this app however you like. Please keep the attribution to Mailsac.
 
